@@ -1,0 +1,175 @@
+🧠 GraphQL কী?
+👉 GraphQL হলো একটি API Query Language
+➡️ এটা দিয়ে client (frontend) ঠিক করে:
+“আমি server থেকে কোন data চাই”
+---------------------------------------------------------------------------
+
+💡 সহজভাবে
+👉 REST API তে:
+server ঠিক করে কি data দিবে
+👉 GraphQL এ:
+client ঠিক করে কি data নিবে 🔥
+---------------------------------------------------------------------------
+
+📦 Example
+🧑‍💻 ধরো database এ data আছে:
+{
+  "user": {
+    "name": "Yeasin",
+    "email": "yeasin@gmail.com",
+    "age": 22
+  }
+}
+
+❌ REST API :- GET /user
+👉 response:
+{
+  "name": "Yeasin",
+  "email": "yeasin@gmail.com",
+  "age": 22
+}
+➡️ সব data চলে আসে (যদিও দরকার না)
+
+✅ GraphQL :
+{
+  user {
+    name
+  }
+}
+👉 response:
+{
+  "user": {
+    "name": "Yeasin"
+  }
+}
+🔥 শুধু দরকারি data
+---------------------------------------------------------------------------
+🚀 GraphQL এর Main Concepts
+
+1️⃣ Query
+👉 data fetch করার জন্য
+{
+  users {
+    name
+    email
+  }
+}
+
+2️⃣ Mutation
+👉 data create/update/delete
+mutation {
+  createUser(name: "Yeasin") {
+    id
+    name
+  }
+}
+
+3️⃣ Schema
+👉 data structure define করে
+type User {
+  id: ID
+  name: String
+  email: String
+}
+
+4️⃣ Resolver
+👉 backend function
+যা actual data return করে
+-------------------------------------------------------------------------
+🔥 GraphQL vs REST
+
+| Feature      | REST   | GraphQL |
+| ------------ | ------ | ------- |
+| Data control | Server | Client  |
+| Overfetching | হয় ❌   | হয় না ✅ |
+| Endpoint     | অনেক   | একটাই   |
+| Flexibility  | কম     | বেশি    |
+-------------------------------------------------------------------------
+⚡ কেন GraphQL use করা হয়?
+✅ 1. Exact data পাওয়া
+no extra data
+✅ 2. Performance better
+less data transfer
+✅ 3. Single endpoint
+/api/graphql
+✅ 4. Complex data সহজে পাওয়া
+👉 nested data easily
+📱 Real-world Example
+👉 Facebook, Instagram GraphQL use করে
+-------------------------------------------------------------------------
+
+🎯 Final Summary
+👉 GraphQL:
+✔️ API query language
+✔️ client control data
+✔️ flexible & efficient
+
+🔥 One Line
+👉 GraphQL = client বলে দেয় “কি data লাগবে” 🔥
+
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+
+🧠 Apollo Server কী?
+👉 Apollo Server হলো GraphQL server বানানোর জন্য একটি library
+➡️ এটা ব্যবহার করে তুমি সহজে:
+    GraphQL API তৈরি করতে পারো
+    Query / Mutation handle করতে পারো
+
+💡 সহজভাবে
+👉
+GraphQL = language
+Apollo Server = tool / framework
+➡️ GraphQL API বানাতে Apollo Server use করা হয়
+
+-------------------------------------------------------------------------
+🚀 Apollo Server কী কী করে?
+✅ 1. GraphQL API তৈরি করে
+👉 backend ready করে
+✅ 2. Query & Mutation handle করে
+👉 client request process করে
+✅ 3. Built-in tools দেয়
+error handling
+validation
+playground (test UI)
+✅ 4. Express এর সাথে কাজ করে
+app.use("/graphql", expressMiddleware(server));
+
+🔥 কেন Apollo Server use করা হয়?
+✅ Easy setup
+👉 কম code এ GraphQL server
+✅ Production-ready
+👉 caching, performance tools
+✅ Developer friendly
+👉 GraphQL Playground UI
+
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+🧠 graphql-tag কী?
+👉 graphql-tag হলো একটি library
+যেটা ব্যবহার করা হয় GraphQL query/mutation কে parse করার জন্য
+➡️ এটা GraphQL string কে AST (Abstract Syntax Tree) এ convert করে
+
+💡 সহজভাবে
+👉 তুমি যখন GraphQL query লিখো:
+const query = `
+  query {
+    user {
+      name
+    }
+  }
+`;👉 এটা শুধু একটা string 😐
+
+❌ Problem : 👉 Apollo বা GraphQL client এটা সরাসরি বুঝতে পারে না
+
+✅ Solution → graphql-tag
+
+import gql from "graphql-tag";
+
+const query = gql`
+  query {
+    user {
+      name
+    }
+  }
+`; 👉 এখন এটা parsed query হয়ে যায় ✅
